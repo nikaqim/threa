@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Banner */
+
+.banner-container {
+    @apply w-full px-8 py-4 border-b-4 flex flex-wrap justify-center h-24
+}
+
+.banner-container > div {
+    /* max-w-[1600px]  */
+    @apply w-full flex flex-wrap justify-between
+}
+
+.banner-container .left {
+    @apply flex flex-wrap items-center
+}
+.banner-container .center {
+    @apply flex flex-wrap items-center w-[50%] justify-center
+}
+
+.banner-container .right {
+    @apply flex flex-wrap items-center
+}
+
+.banner-container .logo-container {
+    @apply w-[80px] mr-4
+}
+
+/* home container */
+.home-container .content {
+    @apply w-full flex justify-between min-h-[750px] min-w-[650px]
+}
+
+.home-container .content > *,
+.pdf-container,
+.pdf-container > div {
+    @apply h-full
+}
+
+.home-container .content {
+    height: calc(100vh - 96px);
+}
+
+.home-container .content > div {
+}
+
+.home-container .content .left {
+    @apply w-[60%] min-w-[650px] max-w-[950px] border-r-2 
+}
+
+.home-container .content .right {
+    @apply w-[70%] block h-full
+}
+
+.home-container .content .right > div {
+    @apply w-full
+}
+
+.table-container {
+    @apply h-full overflow-scroll relative
+}
+
+.table-container .p-datatable-wrapper,
+.table-container .p-datatable {
+    height: calc(100% - 55px);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.home-container::-webkit-scrollbar,
+.table-container::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.home-container,
+.table-container {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+.table-container .p-datatable {
+    @apply flex flex-wrap w-full justify-center
+}
+
+.table-container .p-datatable-wrapper {
+    @apply w-full mb-8
+}
+
+.table-container thead, 
+.table-container thead > tr{
+    @apply sticky top-0 z-10
+}
+
+.table-dragable {
+    @apply border-b-2 
+}
+
+.home-container .content .right {
+}
+
+/* upload */
+.upload form {
+    @apply w-full flex
+}
+
+.upload input[name=file]{
+    @apply w-full
+} 
+
+.upload-main {
+    @apply h-fit border-b-2 flex flex-wrap justify-start
+}
+
+.upload-container {
+    @apply max-w-[820px] w-full
+}
+
+.hidden {
+    @apply opacity-0
+}
+
+.btn {
+    @apply px-3 py-1.5 bg-green-600 text-white rounded-sm cursor-pointer
+}
+
+.disabled {
+    @apply opacity-30 bg-gray-200 text-gray-400 cursor-not-allowed
+}
+
+table .value-cell {
+    @apply flex flex-wrap items-center relative px-2 py-1 relative w-fit
+}
+
+table .value-cell span:first-child {
+    /* @apply mr-2 */
+}
+
+.alert-buble {
+    @apply w-2 h-2 block rounded-full absolute top-1 right-[-4px] animate-pulse
+}
+
+.alert-buble.review {
+    @apply bg-green-400;
+}
+
+.alert-buble.fix {
+    @apply bg-red-500;
+}
+
+.alert-change-icon {
+    @apply absolute top-0 bottom-0 my-auto left-[-8px]
+}
+
+/* Validation Panel */
+.validation-panel {
+    @apply px-4 py-4 overflow-auto
+}
+
+.validation-panel .header {
+    @apply w-full flex justify-between
+}
+
+.validation-panel .header > div {
+    @apply text-sm px-3 py-1 text-[#333]
+}
+
+.validation-panel .status-wrapper {
+    @apply bg-[#f1f1f1] flex items-center flex-wrap w-fit rounded-sm mr-4
+}
+
+.validation-panel .count-wrapper {
+    @apply flex items-center font-medium
+}
+
+.validation-panel .count-wrapper > span:not(.count){
+    @apply font-medium
+}
+
+.validation-panel .count-wrapper > div {
+    @apply mr-4
+}
+
+.validation-panel .action-review {
+    @apply flex items-center
+}
+
+.validation-panel .action-review > div {
+    @apply mr-2 cursor-pointer opacity-65
+
+}
+
+.validation-panel .action-review > div:hover {
+    @apply opacity-100
+}
+
+.validation-panel .action-review .decline {
+    @apply text-red-500 text-2xl bg-[#f1f1f1] rounded-md shadow-sm
+}
+
+.validation-panel .action-review .accept {
+    @apply text-emerald-500 text-2xl bg-[#f1f1f1] rounded-md shadow-sm
+}
+
+.count-wrapper .count {
+    @apply px-1 py-1 font-semibold rounded-sm mr-1 w-8 inline-block text-center
+}
+
+.count-wrapper .count.date {
+    @apply bg-blue-500 text-white 
+}
+
+.count-wrapper .count.debit {
+    @apply bg-red-300 text-white 
+}
+
+.count-wrapper .count.credit {
+    @apply bg-emerald-400 text-white
+}
+
+.count-wrapper .count.balance {
+    @apply bg-teal-500 text-white 
+}
+
+.info-items {
+    @apply border-2 rounded-md mt-4 pt-16 pb-4 px-2 relative
+}
+
+.info-items .otherinfo {
+    @apply absolute  top-3 right-3 flex
+}
+
+.info-items .otherinfo > div {
+    @apply px-1 text-sm rounded-sm tracking-normal font-semibold 
+}
+
+.info-items .lineno {
+    @apply bg-blue-400 text-white mr-1
+}
+
+.results .review {
+    @apply px-1 text-sm rounded-sm tracking-normal font-semibold ml-24
+}
+
+.results .review:not(.modified) {
+    @apply bg-gray-400 text-white
+}
+
+.results .review.modified {
+    @apply bg-green-400 text-white 
+}
+
+.info-items .results {
+    @apply flex items-center w-[500px] justify-between
+}
+
+.info-items .results .icon-wrapper {
+    @apply mx-2
+}
+
+.info-items .results .type{
+    @apply border-2 text-sm px-2 py-1 mr-2 rounded-md bg-[#f1f1f1] font-semibold text-[#333]
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    @apply bg-[#f5f5f5]
+}
+
+.info-items > div {
+    @apply flex flex-wrap max-w-[650px] justify-between mb-4
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight,
+.p-datatable.p-datatable-selectable .p-datatable-tbody > tr.p-selectable-row:not(.p-highlight):not(.p-datatable-emptymessage):hover,
+.p-datatable .p-datatable-tbody > tr > td.p-highlight {
+    /* @apply bg-slate-50 font-bold  */
+    @apply bg-transparent font-bold
+}
+
+.p-inputnumber-input {
+    @apply max-w-full
+}

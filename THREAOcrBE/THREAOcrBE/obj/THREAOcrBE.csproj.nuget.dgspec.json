@@ -1,0 +1,118 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/nikaqim/Workspace/Projects/THREA/OCR/threa_app/THREAOcrBE/THREAOcrBE/THREAOcrBE.csproj": {}
+  },
+  "projects": {
+    "/home/nikaqim/Workspace/Projects/THREA/OCR/threa_app/THREAOcrBE/THREAOcrBE/THREAOcrBE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/nikaqim/Workspace/Projects/THREA/OCR/threa_app/THREAOcrBE/THREAOcrBE/THREAOcrBE.csproj",
+        "projectName": "THREAOcrBE",
+        "projectPath": "/home/nikaqim/Workspace/Projects/THREA/OCR/threa_app/THREAOcrBE/THREAOcrBE/THREAOcrBE.csproj",
+        "packagesPath": "/home/nikaqim/.nuget/packages/",
+        "outputPath": "/home/nikaqim/Workspace/Projects/THREA/OCR/threa_app/THREAOcrBE/THREAOcrBE/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/nikaqim/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Aspose.PDF": {
+              "target": "Package",
+              "version": "[23.12.0, )"
+            },
+            "Assembly": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Emgu.CV": {
+              "target": "Package",
+              "version": "[4.8.1.5350, )"
+            },
+            "Emgu.CV.runtime.ubuntu-x64": {
+              "target": "Package",
+              "version": "[4.8.1.5350, )"
+            },
+            "Emgu.CV.runtime.windows": {
+              "target": "Package",
+              "version": "[4.8.1.5350, )"
+            },
+            "IronOcr": {
+              "target": "Package",
+              "version": "[2024.1.17, )"
+            },
+            "IronOcr.Languages.Malay": {
+              "target": "Package",
+              "version": "[2020.11.2, )"
+            },
+            "IronOcr.Linux": {
+              "target": "Package",
+              "version": "[2024.1.17, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Tesseract": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "itext": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/nikaqim/.dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Mvc;
+// using Microsoft.AspNetCore.Components;
+// using Microsoft.AspNetCore.Http.HttpResults;
+
+using System.Diagnostics;
+using System.ComponentModel;
+
+using System.Web.Http.Cors;
+using System.Drawing;
+using System.Text;
+using Microsoft.Extensions.ObjectPool;
+using AutoMapper.Configuration.Annotations;
+
+using THREAOcrBE.Models;
+using THREAOcrBE.Services;
+
+namespace THREAOcrBE.Controllers {
+    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
+    [Route("test/[controller]")]
+    [ApiController]
+    public class CimbIslamicController : Controller {
+        private readonly IQueuedBackgroundService _queuedBackgroundService;
+		private readonly IComputationJobStatusService _computationJobStatusService;
+
+		public CimbIslamicController(
+			IQueuedBackgroundService queuedBackgroundService,
+			IComputationJobStatusService computationJobStatusService)
+		{
+			_queuedBackgroundService = queuedBackgroundService;
+			_computationJobStatusService = computationJobStatusService;
+		}
+
+        public string getFileFormatting(string filename){
+            return "";
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<StatementRecord>> HelloWorld(){
+            return Ok(new List<StatementRecord>(){
+                new StatementRecord {
+                    OpeningBalance = 1.21312,
+                    RowDate = new DateOnly(2023,12,12),
+                    StatementDate = new DateOnly(2023,12,12),
+                    Balance = 31.312
+                },
+                new StatementRecord {
+                    OpeningBalance = 1.21312,
+                    RowDate = new DateOnly(2023,12,12),
+                    StatementDate = new DateOnly(2023,12,12),
+                    Balance = 31.312
+                }
+            });
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public ActionResult<string> testStr(){
+            return Ok("This is a test");
+        }
+
+        [HttpGet]
+        [Route("{id:int}")] // enter query input to route /api/CimbIslamic/{id}
+        public bool TestQueryInt(int id){
+            return false;
+        }
+
+        [HttpGet]
+        [Route("{name:alpha}")] // enter query input to route /api/CimbIslamic/{id}
+        public bool TestQueryStr(string name){
+            return false;
+        }
+
+        // Uploading files - pdf 
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        [Route("upload")]
+        public async Task<IActionResult> StatementUpload(IFormFile file){
+            Console.WriteLine("Writing pdf to directory...");
+            var result = await WriteFile(file);
+
+            JobParametersModel Params = new JobParametersModel();
+            Params.FilePath = result;
+
+            string[] ResultArr = result.Split("/");
+            Params.FileName = ResultArr[ResultArr.Length - 1];
+            Params.FileFormatting = getFileFormatting(Params.FileName);
+
+            Console.WriteLine("Params:{0} {1}", Params.FilePath, Params.FileName);
+
+            return(Accepted(await _queuedBackgroundService.PostWorkItemAsync(Params).ConfigureAwait(false)));
+        }
+
+        private async Task<string> WriteFile(IFormFile file){
+            string orifilename = "";
+            string filename = "";
+            var exactpath = "";
+
+            try {
+
+                var nameInArray = file.FileName.Split('.');
+                var extension = "." + nameInArray[nameInArray.Length - 1];
+
+                orifilename = nameInArray[0].Replace(" ", "");
+                // filename = DateTime.Now.Ticks.ToString() + orifilename + "."  + extension;
+                filename = orifilename + "."  + extension;
+
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Controllers/Uploads/Files");
+
+                if(!Directory.Exists(filepath)){
+                    Directory.CreateDirectory(filepath);
+                }
+
+                exactpath = Path.Combine(Directory.GetCurrentDirectory(), "Controllers/Uploads/Files", filename);
+
+                Console.WriteLine($"Filepath:{exactpath}");
+
+                using(var stream = new FileStream(exactpath, FileMode.Create)){
+                    await file.CopyToAsync(stream);
+                }
+            } catch(Exception e){
+
+            }
+
+            return exactpath;
+        }
+
+        // // example starting background process
+        // [HttpPost, Route("beginComputation")]
+		// [ProducesResponseType(StatusCodes.Status202Accepted, Type = typeof(JobCreatedModel))]
+		// public async Task<IActionResult> BeginComputation([FromBody] JobParametersModel obj)
+		// {   
+		// 	return Accepted(await _queuedBackgroundService.PostWorkItemAsync(obj).ConfigureAwait(false));
+		// }
+
+    }    
+}
